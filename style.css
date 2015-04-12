@@ -1,0 +1,116 @@
+/*.ui-btn-icon-left::after, .ui-btn-icon-right::after, .ui-btn-icon-top::after, .ui-btn-icon-bottom::after, .ui-btn-icon-notext::after{
+	background-color: rgba(0, 0, 0, 0.0)!important;
+}
+
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head + body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head + body .ui-btn.ui-btn-a:visited {
+	background-color: rgba(0,0,0,0.5)!important;
+	color: #fff!important;
+	text-shadow:none!important;
+}
+
+.ui-page-theme-a .ui-navbar {
+	background-color: rgba(0,0,0,0.5)!important;
+	color: #fff!important;
+	text-shadow:none!important;
+}
+
+.ui-bar-a, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit, html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit {
+	background: none!important;
+}
+
+.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head + body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on::after, html .ui-bar-a .ui-checkbox-on::after, html .ui-body-a .ui-checkbox-on::after, html body .ui-group-theme-a .ui-checkbox-on::after, .ui-btn.ui-checkbox-on.ui-btn-a::after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {
+	border: none!important;
+}
+
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+	text-shadow:none!important;
+
+}*/
+
+.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+	background-color: rgba(0,0,0,0.3)!important;
+}
+
+h1 {
+	color: #ffffff;
+	text-align: center;
+	margin-top: 0;
+	font-weight: bold;
+}
+
+h2, h3 {
+	color: #ffffff;
+	text-align: center;
+	font-weight: 100;
+}
+
+h3, h4, h5, h6, p, li {
+
+color: #ffffff;
+	
+
+}
+
+body {
+	text-transform: none;
+}
+
+.align {
+	width: 100%;
+	text-align: center;
+
+}
+
+
+.ui-link {
+	border: none;
+
+}
+
+#slider2 {
+    width: 20%;
+}
+
+.ui-slider-track {
+    margin-left: 6em;
+}
+
+
+.ui-footer {
+	background-color: none!important;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.ui-content {
+	margin-bottom: 2.5em;
+}
+
+.ui-header {
+	background-color: rgba(0,0,0,0.5)!important;
+}
+
+
+.ui-header, .ui-footer {
+	border-width: 0!important;
+}
+
+.ui-title {
+	color: #ffffff!important;
+	text-shadow:none!important;
+}
+
+.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head + body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on::after, html .ui-bar-a .ui-checkbox-on::after, html .ui-body-a .ui-checkbox-on::after, html body .ui-group-theme-a .ui-checkbox-on::after, .ui-btn.ui-checkbox-on.ui-btn-a::after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {
+	border-color: none!important;
+	box-shadow: none!important; 
+	background-color: none!important;
+}
+
+.ui-panel-inner a {
+	text-align: left;
+}
+
+#mypanel {
+    background: rgba(0, 0, 0, 0.8) !important;
+}
