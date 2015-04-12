@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+		
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<title>Multi-page template</title>
+		<link rel="stylesheet" href="css/jqm-demos.css">
+		<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" href="css/themes/default/style.css">
+		<link rel="stylesheet" href="css/themes/default/negro.css" />
+		<link rel="stylesheet" href="css/themes/default/jquery.mobile.icons.min.css" />
+		<link href="css/jquery.zrssfeed.css" rel="stylesheet" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script src="js/funciones.js"></script>
+		
+		<script src="js/jquery.zrssfeed.min.js" type="text/javascript"></script>
+		        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+		<style type="text/css">
+			.jqm-content {
+				display: none;
+			}
+
+			  .ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+			  background-image: url(coffeebeans2.jpg)!important;
+			  background-position: center center;
+			  background-repeat: no-repeat;
+			  background-attachment: fixed;
+			  background-size: cover;
+			  color: #222222;
+			}
+		</style>
+	<script type="text/javascript">
+$(document).ready(function () {
+	$('#pronostico_diario').rssfeed('http://www.imn.ac.cr/imn/rss/EstadoActualPorCiudad.aspx');
+	cargar_provincia();
+	cargar_region();
+	cargar_actividad();
+	cargar_agente();
+	cargar_cafe();
+	lla();
+	});
+</script>
+<script>
+function salir()
+{
+	navigator.app.exitApp();
+}
+
+</script>
+</head>
+    <body>
+	 
+	
+	  <div data-role="page" id="principal">
+	<div role="main" class="ui-content">
+		<div class="align">
+		<img src="logo.png">
+		<h1>Bienvenidos a<br>Coffee Cloud</h1>
+		</div>
+		
+
+    <ul data-role="listview" data-inset="true">
+	<input type="hidden" id="nombre_hidden"/>
+	<input type="hidden" id="id_hidden"/>
+	<input type ="hidden" id="llave"/>
+        <li class="ui-field-contain">
+            <label for="correo_l">Correo:</label>
+            <input name="correo_l" id="correo_l" value="" data-clear-btn="true" type="text">
+        </li>
+        <li class="ui-field-contain">
+            <label for="pass_l">Contraseña:</label>
+            <input name="pass_l" id="pass_l" value="" data-clear-btn="true" type="password">
+        </li>  
+        <li class="ui-body ui-body-a">
+            <fieldset class="ui-grid-a">
+                <input value="Iniciar" type="submit" onclick ="login();" >
+            </fieldset>
+        </li>
+    </ul>
+
+	</div><!-- /content -->
+    <div data-role="footer">
+    <div data-role="navbar" data-iconpos="left">
+        <ul>
+            <li><a href="#recuperar" data-icon="alert">Olvidé mi acceso</a></li>
+            <li><a href="#registro" data-icon="edit">Registrarme</a></li>
+        </ul>
+    </div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+    <div data-role="page" id="recuperar">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- /panel -->
+
+	<div data-role="header">
+  <h1>Recuperar</h1>
+  <a href="#principal" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+        <div class="align">
+        <img src="logo.png">
+        </div>
+    
+    <ul data-role="listview" data-inset="true">
+        <li class="ui-field-contain">
+            <label for="correo_r">Correo:</label>
+            <input name="correo_r" id="correo_r" value="" data-clear-btn="true" type="text">
+        </li> 
+        <li class="ui-body ui-body-a">
+            <fieldset class="ui-grid-a">
+                <input value="Enviar" type="submit" onclick="recuperar();">
+            </fieldset>
+        </li>
+    </ul>
+
+	</div><!-- /content -->
+    <div data-role="footer">
+        <!--<div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="eye">Pronósticos</a></li>
+                <li><a href="#" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#" data-icon="cloud">Reportar</a></li>
+                <li><a href="#" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="registro">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- /panel -->
+
+	<div data-role="header">
+  <h1>Registro</h1>
+  <a href="#principal" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+  
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+        <div class="align">
+        <img src="logo.png">
+        </div>
+    
+    <ul data-role="listview" data-inset="true">
+        <li class="ui-field-contain">
+            <label for="nombre">Nombre:</label>
+            <input name="nombre" id="nombre" value="" data-clear-btn="true" type="text">
+        </li>
+        <li class="ui-field-contain">
+            <label for="pass">Contraseña:</label>
+            <input name="pass" id="pass" value="" data-clear-btn="true" type="text">
+        </li>
+        <li class="ui-field-contain">
+            <label for="correo">Correo:</label>
+            <input name="correo" id="correo" value="" data-clear-btn="true" type="text">
+        </li>
+        <li class="ui-field-contain">
+            <label for="actividad">Actividad:</label>
+          <select name="actividad" id="actividad" onchange="cargar_actividad();">
+                <option value="ninguno">Seleccionar</option>
+            </select>
+        </li>
+        <li class="ui-field-contain">
+            <label for="telefono">Teléfono:</label>
+            <input name="telefono" id="telefono" value="" data-clear-btn="true" type="text">
+        </li>
+        <li class="ui-field-contain">
+            <label for="provincia" class="select">Provincia:</label>
+            <select name="provincia" id="provincia" onchange="cargar_canton(this);">
+                <option value="ninguno">Seleccionar</option>
+            </select>
+        </li>
+        <li class="ui-field-contain">
+            <label for="canton" class="select">Canton:</label>
+            <select name="canton" id="canton">
+                <option value="ninguno">Seleccionar</option>
+            </select>
+        </li>
+        <li class="ui-field-contain">
+            <label for="region" class="select">Región:</label>
+            <select name="region" id="region">
+                <option value="ninguno">Seleccionar</option>
+            </select>
+        </li>
+        <li class="ui-body ui-body-a">
+            <fieldset class="ui-grid-a">
+                <input value="Registrarme" onclick ="registrar();"  type="submit">
+            </fieldset>
+        </li>
+    </ul>
+
+	</div><!-- /content -->
+    <div data-role="footer">
+        <!--<div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="eye">Pronósticos</a></li>
+                <li><a href="#" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#" data-icon="cloud">Reportar</a></li>
+                <li><a href="#" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+	</div>
+<div data-role="page" id="reporte">	
+	<div data-role="header" >
+	  <h1>Reportar</h1>
+	  
+	  <a href="#pronostico" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+	  <a href="#mypanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+		</div><!-- /header -->
+
+		<div role="main" class="ui-content">
+		
+		
+		<ul data-role="listview" data-inset="true">
+				<li class="ui-field-contain">
+			<fieldset class="ui-grid-a">
+				<label for="imgCamara_da">Fotografia(opcional):</label>
+				<a href="#" data-icon="plus" data-inline="true" data-role="button" id="btnHacerFoto" onclick="ObtenerFoto1();">Adjuntar</a> 
+				  <input type="hidden" id="descripcion1" name="descripcion1" value="Evidencia de agente dentro de los cultivos "/>
+				  <p><img id="imgCamara_da" src="" width="120" height="120"/></p>
+				  </fieldset>
+			</li>
+			<li class="ui-field-contain">
+				<label for="anonimo">Anónimo:</label>
+				<select name="anonimo" id="anonimo_r" data-role="slider">
+					<option value="1" class="bk-option">No</option>
+					<option value="2" class="bk-option">Sí</option>
+				</select>
+			</li>
+			<li class="ui-field-contain">
+				<label for="area">M &#178; de Área:</label>
+				<input name="area_r" id="area_r" value="10" min="10" max="10000" data-highlight="true" type="range">
+			</li>
+			<li class="ui-field-contain">
+	<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+		<legend>Manejo:</legend>
+			<input name="radio-choice-b" id="manejosol" value="list" checked="checked" type="radio">
+			<label for="manejosol">Sol</label>
+			<input name="radio-choice-c" id="manejosombra" value="grid" type="radio">
+			<label for="manejosombra">Sombra</label>
+	</fieldset>
+			</li>
+			<li class="ui-field-contain">
+				<label for="cafe" class="select">Tipo de café:</label>
+				<select name="cafe_r" id="cafe_r">
+					<option value="ninguno">Seleccionar</option>
+				
+				</select>
+			</li>
+			<li class="ui-field-contain">
+				<label for="agente" class="select">Agentes:</label>
+				<select name="agente_r" id="agente_r">
+					<option value="ninguno">Seleccionar</option>
+				
+				</select>
+			</li>
+			<li class="ui-field-contain">
+				<label for="notas_r">Notas:</label>
+			<textarea cols="40" rows="8" name="notas_r" id="notas_r"></textarea>
+			</li>
+		
+			<li class="ui-body ui-body-a">
+				<fieldset class="ui-grid-a">
+					<input value="Enviar" type="submit" onclick="reporte();">
+				</fieldset>
+			</li>
+		</ul>
+	
+		</div><!-- /content -->
+		<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#pronostico" data-icon="eye">Pronósticos</a></li>
+					<li><a href="#escenario" data-icon="calendar">Escenarios</a></li>
+					<li><a href="#reporte" data-icon="cloud">Reportar</a></li>
+					<li><a href="#boletin" data-icon="info">Boletín</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+
+</div><!-- /page -->
+ <div data-role="page"  id="boletin">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- /panel -->
+
+	<div data-role="header">
+  <h1>Boletín</h1>
+  <a href="#pronostico" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+  <a href="#mypanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+        <div class="align">
+        <img src="logo.png">
+        </div>
+        <h2>Sistema de alerta y recomendación temprana para el combate de la roya</h2>
+        <h3>Resumen de Marzo 2015</h3>       
+        <p><strong>Progreso roya del cafeto:</strong></p>
+        <ul>
+            <li>La enfermedad continuó con la disminución de su incidencia, debido a la permanencia de condiciones climáticas menos favorables a la enfermedad, durante los meses de febrero y marzo en la mayoría de la Regiones cafetaleras.</li><p></p>
+            <li>En el próximo mes la enfermedad continuará un descenso natural mucho más leve que en meses anteriores en la mayoría de las Regiones cafetaleras, hasta alcanzar sus niveles más bajos en los meses de abril y mayo.</li>
+        </ul>
+        <p><strong>Condiciones climáticas:</strong></p>
+        <ul>
+            <li>Actualmente se mantienen condiciones climáticas desfavorables para el progreso de la Roya en las Regiones del Valle Central Occidental, Zona Norte, Pérez Zeledón y Coto Brus.</li><p></p>
+            <li>En la Región de Los Santos y localidades altas del Valle Central, la temperatura se mantiene favorable a la Roya, sin embargo, el riesgo de aumentos de la enfermedad es menor debido a lluvias escasas y poco frecuentes.</li>
+            <p></p>
+            <li>Por el contrario, en Turrialba y Orosí persisten las lluvias frecuentes y las temperaturas muy favorables a la Roya. Al igual que en el mes anterior, se mantiene un alto riesgo de que pueda presentarse un progreso anticipado de la enfermedad en el corto plazo.</li>
+        </ul>
+        <p><strong>Recomendaciones:</strong></p>
+        <ul>
+            <li>Aplicar un fungicida sistémico luego de la poda y/o en lotes con alto potencial de cosecha, donde se mantengan condiciones de clima muy favorable a la enfermedad.</li><p></p>
+            <li>En las Regiones o localidades donde se mantiene un clima favorable a la Roya, se debe mantener una observación constante del cafetal para detectar el surgimiento de signos iniciales de la enfermedad.</li>
+        </ul>
+                <div class="align">
+        <img src="logo.png">
+        </div>
+        <h2>Recomendaciones para el manejo de la roya</h2>
+        <h3></h3>       
+        <p><strong></strong></p>
+        <ul>
+            <li>Durante marzo de 2015 continuó el descenso en el progreso de la Roya. Esto obedece a la permanencia de condiciones climáticas menos favorables para la enfermedad en gran parte del área cafetalera. Sin embargo, en la región de Turrialba particularmente continúa una temperatura y lluvia favorable a la Roya, situación que propicia que se mantenga una mayor actividad del patógeno Hemileia vastatrix.</li>
+            <p></p>
+            <li>Luego de la etapa de recolección se recomienda eliminar los tejidos agotados y severamente afectados por la Roya lo antes posible, a fin de reducir el inóculo de la enfermedad en el cafetal y propiciar el desarrollo de nuevos tejidos.</li>
+            <p></p>
+            <li>Se debe continuar con el manejo integrado de la Roya durante este mes mediante labores culturales propias del manejo del cultivo como aplicación de enmiendas, control de malezas, labores de conservación de suelos, preparación de caminos, entre otras.</li>
+            <p></p>
+            <li>En las regiones de maduración temprana como Pérez Zeledón, Coto Brus y Turrialba, se recomienda a los Productores preparar los equipos de aspersión e insumos necesarios para la aplicación del control químico, con el propósito de iniciar a tiempo el combate preventivo de la Roya a partir del mes de abril (mes de transición a condiciones más lluviosas) con fungicidas del tipo sistémico en mezcla con estrobilurina preferiblemente, a pesar de que no se observen signos evidentes de la enfermedad procurando la mejor cobertura posible.</li>
+        </ul>
+	</div><!-- /content -->
+        <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pronostico" data-icon="eye">Pronósticos</a></li>
+                <li><a href="#escenario" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#reporte" data-icon="cloud">Reportar</a></li>
+                <li><a href="#boletin" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+<div data-role="page" id="perspectiva">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- <iframe width='100%' height='520' frameborder='0' src='https://arkux.cartodb.com/viz/c2f036c2-e0aa-11e4-99de-0e5e07bb5d8a/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe> /panel -->
+
+	<div data-role="header">
+		<h1>Pronósticos</h1>
+          <a href="#pronostico" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+  <a href="#mypanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div class="align">
+		<img src="logo.png">
+		</div> 
+	<iframe width='100%' height='520' frameborder='0' src='https://ldiego008.cartodb.com/viz/a83f8676-dfc3-11e4-80ad-0e8dde98a187/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+	</div><!-- /content -->
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pronostico_tiempo" data-icon="eye">Pronósticos</a></li>
+                <li><a href="#escenario" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#reporte" data-icon="cloud">Reportar</a></li>
+                <li><a href="#boletin" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page 
+
+inicio de otra seccion
+-->
+<div data-role="page" id="climatologica">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- <iframe width='100%' height='520' frameborder='0' src='https://arkux.cartodb.com/viz/c2f036c2-e0aa-11e4-99de-0e5e07bb5d8a/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe> /panel -->
+
+	<div data-role="header">
+		<h1>Pronósticos</h1>
+          <a href="#pronostico" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+  <a href="#mypanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div class="align">
+		<img src="logo.png">
+		</div> 
+	<iframe width='100%' height='400' frameborder='0' src='mapaclimatico.html' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+	</div><!-- /content -->
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pronostico_tiempo" data-icon="eye">Pronósticos</a></li>
+                <li><a href="#escenario" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#reporte" data-icon="cloud">Reportar</a></li>
+                <li><a href="#boletin" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+<div data-role="page" id="escenario">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- /panel -->
+
+	<div data-role="header">
+		<h1>Escenarios Climaticos - Información Lluviosa</h1>
+          <a href="#pronostico" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+  <a href="#mypanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div class="align">
+		<img src="logo.png">
+		</div> 
+			<iframe width='100%' height='520' frameborder='0' src='https://arkux.cartodb.com/viz/c2f036c2-e0aa-11e4-99de-0e5e07bb5d8a/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+	</div><!-- /content -->
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pronostico_tiempo" data-icon="eye">Pronósticos</a></li>
+                <li><a href="#escenario" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#reporte" data-icon="cloud">Reportar</a></li>
+                <li><a href="#boletin" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+ <div data-role="page" id="pronostico">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- /panel -->
+
+	<div data-role="header">
+		<h1>Pronósticos</h1>
+          <a href="#principal" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+  <a href="#mypanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div class="align">
+		<img src="logo.png">
+		</div> 
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Reporte Clímatico por Región</li>
+    <li><a href="#pronostico_tiempo">
+    <h2>Reporte Diario</h2>
+    <!--<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+    <p></p>
+        <!--<p class="ui-li-aside"><strong>6:24</strong>PM</p>-->
+    </a></li>
+
+    <li data-role="list-divider">Mapa climático</li>
+    <li><a href="#climatologica">
+    <h2>Mapa con pronostico </h2>
+    <!--<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+    <p></p>
+        <!--<p class="ui-li-aside"><strong>6:24</strong>PM</p>-->
+    </a></li>
+	  
+    <li><a href="#perspectiva">
+    <h2>Mapa Perspectiva Climática de Café</h2>
+    <!--<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+    <p></p>
+	
+        <!--<p class="ui-li-aside"><strong>6:24</strong>PM</p>-->
+    
+	</a></li>
+</ul>
+	</div><!-- /content -->
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pronostico_tiempo" data-icon="eye">Pronósticos</a></li>
+                <li><a href="#escenario" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#reporte" data-icon="cloud">Reportar</a></li>
+                <li><a href="#boletin" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+
+ <div data-role="page" id="pronostico_tiempo">
+        <div data-role="panel" id="mypanel" data-display="push" data-position="right">     
+<ul data-role="listview" data-inset="true" data-divider-theme="a">
+    <li data-role="list-divider">Usuario</li>
+    <li><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Perfil</a></li>
+    <li><a href="" onclick="salir();" class="ui-btn ui-icon-power ui-btn-icon-left">Sesión</a></li>
+    <li data-role="list-divider">Configuración</li>
+    <li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">opciones</a></li>
+</ul>
+</div><!-- /panel -->
+
+	<div data-role="header">
+		<h1>Pronósticos</h1>
+          <a href="#pronostico" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all"></a>
+  <a href="#mypanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<!--<div class="align">
+		<img src="logo.png">
+		<h1>Bienvenidos a<br>Coffee Cloud</h1>
+		<h2>El app diseñada<br>para gestionar<br>las siembras de
+café</h2>
+		</div>-->
+       
+<div id="pronostico_diario"></div>
+	</div><!-- /content -->
+    <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+          
+                <li><a href="#escenario" data-icon="calendar">Escenarios</a></li>
+                <li><a href="#reporte" data-icon="cloud">Reportar</a></li>
+                <li><a href="#boletin" data-icon="info">Boletín</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page -->
+ 
+ 
+
+  
+
+    </body>
+</html>
