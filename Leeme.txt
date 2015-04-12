@@ -1,0 +1,20 @@
+El siguiente codigo fuente es del desarrollo del proyecto para el International SpaceAppsChallenge, en categoría de Tierra, 
+buscando desarrollar la aplicación "crop alert" o "alertas de cultivo".
+
+Solución que resuelve el app: Centralizar y simplicar la visualización de datos que puedan prevenir problemas asociados 
+al control de plagas en cultivos de regiones específicas. 
+
+Usuario Final: Inversionistas, Propietarios de modelos de negocios en la industria agropecuaria, a cargo de la toma de 
+decisiones relacionadas a la producción, distribución y desarrollo del cultivo.
+
+Problema principal identificado: Datos estadísticos de la Organización Internacional del Café (OIT) calcula un 
+déficit de producción de dos millones de sacos para 2014-2015, sumado al aumento anual de la demanda del producto
+en casi un 2.4%. Estos problemas causados por la falta de conocimiento para el tratamiento y control preventivo 
+de Plagas en cultivos, como la Roya y la broca.
+
+Funcionalidades App: Pronósticos Diarios y Mapa Climático. Escenarios Climáticos con Mapas de Perspectivas del Café 
+a riesgos asociados e Información Lluviosa. Reportar El usuario añade información de reporte.  
+(Fotos, terreno,manejo, tipo de café, agentes, notas). Boletines: Información Reciente y noticias de Icafé.
+
+Web App: Recibe alertas (Mapa, mensajes.) Google Alerts. Administración de Boletines. PDF, TABLAS,LLUVIA.
+Modulos Asociados al usuario: Login_Registro_Edición de Cuenta_Recuperación de Datos
