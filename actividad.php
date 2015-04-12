@@ -1,5 +1,6 @@
 <?php
 /*
+Llena combobox de actividad
 Desarrolladores: Arelys Orozco
 						 Arnoldo Quirós
 						 Ariel Campos
